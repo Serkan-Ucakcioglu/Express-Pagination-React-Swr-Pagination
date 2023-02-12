@@ -2,6 +2,7 @@ import useSWR from "swr";
 import { getPost } from "../api/api";
 import { useState } from "react";
 import PostList from "./PostList";
+import PagiButton from "./PagiButton";
 
 function Post() {
   const [limit, setLimit] = useState();
@@ -37,31 +38,7 @@ function Post() {
           return <PostList post={user} key={user?.id} />;
         })}
       </div>
-      <div className="flex justify-between w-[200px] mt-2 items-center p-3">
-        <button
-          className="border rounded p-1 border-black disabled:text-gray-300"
-          disabled={page == 1}
-          onClick={() => {
-            if (page > 1) {
-              setPage((prev) => prev - 1);
-            }
-          }}
-        >
-          prev
-        </button>
-        <span>
-          {data?.currentPage} of {data?.totalPages}
-        </span>
-        <button
-          className="border rounded p-1 border-black disabled:text-gray-300"
-          disabled={page == data?.totalPages}
-          onClick={() => {
-            setPage((prev) => prev + 1);
-          }}
-        >
-          next
-        </button>
-      </div>
+      <PagiButton data={data} setPage={setPage} />
     </div>
   );
 }
