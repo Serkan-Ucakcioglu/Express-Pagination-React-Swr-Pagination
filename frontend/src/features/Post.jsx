@@ -36,7 +36,13 @@ function Post() {
         {data?.postList?.map((user) => {
           return <div>{user.title}</div>;
         })}
-        {page}
+      </div>
+      <div className="flex justify-around">
+        <button className="border rounded p-1 border-black">prev</button>
+        <span>
+          {data.currentPage} of {data.totalPages}
+        </span>
+        <button className="border rounded p-1 border-black">next</button>
       </div>
     </div>
   );
