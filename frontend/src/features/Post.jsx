@@ -4,6 +4,7 @@ import { useState } from "react";
 
 function Post() {
   const [limit, setLimit] = useState();
+  const [page, setPage] = useState();
   const { data, error, isLoading, mutate } = useSWR("/post", () =>
     getPost(limit)
   );
@@ -11,9 +12,10 @@ function Post() {
   const handleClick = () => {
     mutate("/post");
   };
+  console.log(data);
 
   return (
-    <>
+    <div className="flex flex-col">
       <div className="flex h-10 items-center">
         <input
           value={limit}
@@ -30,7 +32,12 @@ function Post() {
           limit
         </button>
       </div>
-    </>
+      <div>
+        {data?.postList?.map((user) => {
+          return <div>{user.title}</div>;
+        })}
+      </div>
+    </div>
   );
 }
 
