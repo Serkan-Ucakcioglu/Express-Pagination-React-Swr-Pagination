@@ -12,6 +12,7 @@ function Post() {
     getPost(limit, page)
   );
 
+  // restore operation
   const handleClick = () => {
     mutate(`/post?${page}`);
   };
