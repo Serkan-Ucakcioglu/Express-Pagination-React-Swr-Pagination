@@ -4,15 +4,15 @@ import { useState } from "react";
 
 function Post() {
   const [limit, setLimit] = useState();
-  const [page, setPage] = useState();
+
   const { data, error, isLoading, mutate } = useSWR("/post", () =>
     getPost(limit)
   );
+  const [page, setPage] = useState(data ? data.currentPage : null);
 
   const handleClick = () => {
     mutate("/post");
   };
-  console.log(data);
 
   return (
     <div className="flex flex-col">
@@ -36,6 +36,7 @@ function Post() {
         {data?.postList?.map((user) => {
           return <div>{user.title}</div>;
         })}
+        {page}
       </div>
     </div>
   );
