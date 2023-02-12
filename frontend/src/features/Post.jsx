@@ -4,19 +4,19 @@ import { useState } from "react";
 
 function Post() {
   const [limit, setLimit] = useState();
+  const [page, setPage] = useState();
 
   const { data, error, isLoading, mutate } = useSWR("/post", () =>
-    getPost(limit)
+    getPost(limit, page)
   );
-  const [page, setPage] = useState(data ? data.currentPage : null);
 
   const handleClick = () => {
     mutate("/post");
   };
 
   return (
-    <div className="flex flex-col">
-      <div className="flex h-10 items-center">
+    <div className="flex flex-col items-center">
+      <div className="flex h-10 items-center mb-2">
         <input
           value={limit}
           onChange={(e) => setLimit(e.target.value)}
@@ -38,11 +38,25 @@ function Post() {
         })}
       </div>
       <div className="flex justify-around">
-        <button className="border rounded p-1 border-black">prev</button>
+        <button
+          className="border rounded p-1 border-black"
+          onClick={() => {
+            setPage(data.currentPage + 1);
+          }}
+        >
+          prev
+        </button>
         <span>
-          {data.currentPage} of {data.totalPages}
+          {data?.currentPage} of {data?.totalPages}
         </span>
-        <button className="border rounded p-1 border-black">next</button>
+        <button
+          className="border rounded p-1 border-black"
+          onClick={() => {
+            setPage(data.currentPage + 1);
+          }}
+        >
+          next
+        </button>
       </div>
     </div>
   );
