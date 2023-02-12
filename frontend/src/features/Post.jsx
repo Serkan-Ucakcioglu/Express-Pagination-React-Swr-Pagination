@@ -1,21 +1,21 @@
 import useSWR from "swr";
 import { getPost } from "../api/api";
 import { useState } from "react";
+import PostList from "./PostList";
 
 function Post() {
   const [limit, setLimit] = useState();
-  const [page, setPage] = useState();
+  const [page, setPage] = useState(1);
 
-  const { data, error, isLoading, mutate } = useSWR("/post", () =>
+  const { data, error, isLoading } = useSWR(`/post?${page}`, () =>
     getPost(limit, page)
   );
 
-  const handleClick = () => {
-    mutate("/post");
-  };
+  const handleClick = () => {};
+  console.log(page, "page");
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center w-[900px]">
       <div className="flex h-10 items-center mb-2">
         <input
           value={limit}
@@ -34,14 +34,17 @@ function Post() {
       </div>
       <div>
         {data?.postList?.map((user) => {
-          return <div>{user.title}</div>;
+          return <PostList post={user} key={user?.id} />;
         })}
       </div>
-      <div className="flex justify-around">
+      <div className="flex justify-between w-[200px] mt-2 items-center p-3">
         <button
-          className="border rounded p-1 border-black"
+          className="border rounded p-1 border-black disabled:text-gray-300"
+          disabled={page == 1}
           onClick={() => {
-            setPage(data.currentPage + 1);
+            if (page > 1) {
+              setPage((prev) => prev - 1);
+            }
           }}
         >
           prev
@@ -50,9 +53,10 @@ function Post() {
           {data?.currentPage} of {data?.totalPages}
         </span>
         <button
-          className="border rounded p-1 border-black"
+          className="border rounded p-1 border-black disabled:text-gray-300"
+          disabled={page == data?.totalPages}
           onClick={() => {
-            setPage(data.currentPage + 1);
+            setPage((prev) => prev + 1);
           }}
         >
           next
