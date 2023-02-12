@@ -12,8 +12,9 @@ function Post() {
     getPost(limit, page)
   );
 
-  const handleClick = () => {};
-  console.log(page, "page");
+  const handleClick = () => {
+    mutate(`/post?${page}`);
+  };
 
   return (
     <div className="flex flex-col items-center w-[900px]">
