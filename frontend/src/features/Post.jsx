@@ -5,10 +5,10 @@ import PostList from "./PostList";
 import PagiButton from "./PagiButton";
 
 function Post() {
-  const [limit, setLimit] = useState();
+  const [limit, setLimit] = useState(0);
   const [page, setPage] = useState(1);
 
-  const { data, error, isLoading } = useSWR(`/post?${page}`, () =>
+  const { data, error, isLoading, mutate } = useSWR(`/post?${page}`, () =>
     getPost(limit, page)
   );
 
@@ -24,12 +24,14 @@ function Post() {
           onChange={(e) => setLimit(e.target.value)}
           id="limit"
           type="number"
+          placeholder="Post limit"
           className="border-2 h-8 border-gray-400 focus:border-gray-600 outline-none rounded"
         />
 
         <button
           onClick={handleClick}
-          className="flex items-center bg-indigo-600 h-8 rounded text-white p-4  ml-4"
+          className="flex items-center disabled:bg-indigo-300 bg-indigo-600 hover:bg-indigo-800 h-8 rounded text-white p-4  ml-4"
+          disabled={!limit && limit < 1}
         >
           limit
         </button>
