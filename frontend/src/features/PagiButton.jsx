@@ -1,8 +1,8 @@
 import React from "react";
 
-function PagiButton({ data, setPage }) {
+function PagiButton({ data, setPage, page }) {
   return (
-    <div className="flex justify-between w-[200px] mt-2 items-center p-3">
+    <div className="flex justify-between w-[200px] mt-3 items-center p-3">
       <button
         className="border rounded p-1 border-black disabled:text-gray-300"
         disabled={page == 1}

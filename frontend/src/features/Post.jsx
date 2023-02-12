@@ -33,12 +33,12 @@ function Post() {
           limit
         </button>
       </div>
-      <div>
+      <div className="mt-3">
         {data?.postList?.map((user) => {
           return <PostList post={user} key={user?.id} />;
         })}
       </div>
-      <PagiButton data={data} setPage={setPage} />
+      <PagiButton data={data} page={page} setPage={setPage} />
     </div>
   );
 }
