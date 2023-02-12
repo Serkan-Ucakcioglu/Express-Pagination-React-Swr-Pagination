@@ -2,12 +2,16 @@ const express = require("express");
 const app = express();
 const connectDb = require("./config/connectDb");
 const postRoute = require("./router/postRoute");
+const cors = require("cors");
 require("dotenv").config();
 connectDb();
 
-app.get("/", (req, res) => {
-  res.send("hello from simple server :)");
-});
+app.use(
+  cors({
+    origin: true,
+    optionsSuccessStatus: 200,
+  })
+);
 app.use("/", postRoute);
 
 const port = process.env.PORT || 3001;
