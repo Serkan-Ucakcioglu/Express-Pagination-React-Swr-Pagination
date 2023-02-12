@@ -1,9 +1,10 @@
 import "./App.css";
+import Post from "./features/Post";
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-red-500">test</h1>
+    <div className="App flex justify-center items-center">
+      <Post />
     </div>
   );
 }
