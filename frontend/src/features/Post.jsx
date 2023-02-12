@@ -5,8 +5,8 @@ import PostList from "./PostList";
 import PagiButton from "./PagiButton";
 
 function Post() {
-  const [limit, setLimit] = useState(0);
-  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(0); // post limit
+  const [page, setPage] = useState(1); //current page
 
   const { data, error, isLoading, mutate } = useSWR(`/post?${page}`, () =>
     getPost(limit, page)
@@ -16,7 +16,6 @@ function Post() {
   const handleClick = () => {
     mutate(`/post?${page}`);
   };
-
   return (
     <div className="flex flex-col items-center w-[900px]">
       <div className="flex h-10 items-center mb-2">
@@ -38,9 +37,9 @@ function Post() {
         </button>
       </div>
       <div className="mt-3">
-        {data?.postList?.map((user) => {
-          return <PostList post={user} key={user?.id} />;
-        })}
+        {data?.postList?.map((user) => (
+          <PostList post={user} key={user?.id} />
+        ))}
       </div>
       <PagiButton data={data} page={page} setPage={setPage} />
     </div>
