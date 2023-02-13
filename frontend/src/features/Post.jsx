@@ -22,7 +22,7 @@ function Post() {
     return <Loader />;
   }
   if (error) {
-    return <h1 className="text-center">Error....</h1>;
+    return <h1 className="text-center text-red-500">Error....</h1>;
   }
   return (
     <div className="flex flex-col items-center w-[900px]">
