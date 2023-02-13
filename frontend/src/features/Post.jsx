@@ -35,7 +35,6 @@ function Post() {
           placeholder="Post limit"
           className="border-2 px-2 h-8 border-gray-400 focus:border-gray-600 outline-none rounded"
         />
-
         <button
           onClick={handleClick}
           className="flex items-center disabled:bg-indigo-300 bg-indigo-600 hover:bg-indigo-800 h-8 rounded text-white p-4  ml-4"
