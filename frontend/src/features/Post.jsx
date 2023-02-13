@@ -33,7 +33,7 @@ function Post() {
           id="limit"
           type="number"
           placeholder="Post limit"
-          className="border-2 h-8 border-gray-400 focus:border-gray-600 outline-none rounded"
+          className="border-2 px-2 h-8 border-gray-400 focus:border-gray-600 outline-none rounded"
         />
 
         <button
