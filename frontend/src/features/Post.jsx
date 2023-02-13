@@ -15,7 +15,7 @@ function Post() {
 
   // restore operation
   const handleClick = () => {
-    mutate(`/post?${page}`);
+    mutate(`/post?${page}`); //is requesting again
   };
 
   if (isLoading) {
