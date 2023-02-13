@@ -27,30 +27,42 @@ function Post() {
   return (
     <div className="flex flex-col items-center w-[900px]">
       <div className="flex h-10 gap-x-2 items-center mb-2">
-        <select
-          className="border border-indigo-600 rounded p-1"
-          value={limit}
-          onChange={async (e) => {
-            await setLimit(e.target.value);
-            await handleClick();
-          }}
-        >
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-        </select>
-        <input
-          value={page}
-          onChange={(e) => {
-            if (e.target.value <= data.totalPages) {
-              setPage(e.target.value);
-            }
-          }}
-          type="number"
-          placeholder="Go to Page"
-          className="border-2 px-2 h-8 border-gray-400 focus:border-gray-600 outline-none rounded"
-        />
+        <div className="flex flex-col">
+          <label htmlFor="limit" className="text-left">
+            Limit
+          </label>
+          <select
+            className="border border-indigo-600 rounded p-1"
+            value={limit}
+            id="limit"
+            onChange={async (e) => {
+              await setLimit(e.target.value);
+              await handleClick();
+            }}
+          >
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+        <div className="flex flex-col ml-2">
+          <label htmlFor="page" className="text-left">
+            Go To Page
+          </label>
+          <input
+            value={page}
+            id="page"
+            onChange={(e) => {
+              if (e.target.value <= data.totalPages) {
+                setPage(e.target.value);
+              }
+            }}
+            type="number"
+            placeholder="Go to Page"
+            className="border-2 px-2 h-8 border-gray-400 focus:border-gray-600 outline-none rounded"
+          />
+        </div>
       </div>
       <div className="mt-3">
         {data?.postList?.map((user) => (
