@@ -3,6 +3,7 @@ import { getPost } from "../api/api";
 import { useState } from "react";
 import PostList from "./PostList";
 import PagiButton from "./PagiButton";
+import Loader from "../assets/Loader";
 
 function Post() {
   const [limit, setLimit] = useState(0); // post limit
@@ -18,7 +19,7 @@ function Post() {
   };
 
   if (isLoading) {
-    return <h1 className="text-center">Loading...</h1>;
+    return <Loader />;
   }
   if (error) {
     return <h1 className="text-center">Error....</h1>;
