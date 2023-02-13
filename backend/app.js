@@ -3,6 +3,7 @@ const app = express();
 const connectDb = require("./config/connectDb");
 const postRoute = require("./router/postRoute");
 const cors = require("cors");
+
 require("dotenv").config();
 connectDb();
 
@@ -12,6 +13,7 @@ app.use(
     optionsSuccessStatus: 200,
   })
 );
+
 app.use("/", postRoute);
 
 const port = process.env.PORT || 3001;
