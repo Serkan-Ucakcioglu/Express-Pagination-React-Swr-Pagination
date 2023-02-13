@@ -1,5 +1,6 @@
 const Post = require("../model/postSchema");
 
+//pagination
 const getPost = async (req, res) => {
   try {
     //pagination details
