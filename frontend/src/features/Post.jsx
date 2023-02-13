@@ -28,7 +28,6 @@ function Post() {
     <div className="flex flex-col items-center w-[900px]">
       <div className="flex h-10 gap-x-2 items-center mb-2">
         <select
-          name=""
           className="border border-indigo-600 rounded p-1"
           value={limit}
           onChange={async (e) => {
