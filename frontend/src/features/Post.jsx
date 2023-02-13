@@ -41,6 +41,17 @@ function Post() {
           <option value="15">15</option>
           <option value="20">20</option>
         </select>
+        <input
+          value={page}
+          onChange={(e) => {
+            if (e.target.value <= data.totalPages) {
+              setPage(e.target.value);
+            }
+          }}
+          type="number"
+          placeholder="Go to Page"
+          className="border-2 px-2 h-8 border-gray-400 focus:border-gray-600 outline-none rounded"
+        />
       </div>
       <div className="mt-3">
         {data?.postList?.map((user) => (
