@@ -32,7 +32,7 @@ function Post() {
             Limit
           </label>
           <select
-            className="border border-indigo-600 rounded p-1"
+            className="border border-indigo-600 rounded"
             value={limit}
             id="limit"
             onChange={async (e) => {
