@@ -6,7 +6,7 @@ import PagiButton from "./PagiButton";
 import Loader from "../assets/Loader";
 
 function Post() {
-  const [limit, setLimit] = useState(0); // post limit
+  const [limit, setLimit] = useState(10); // post limit
   const [page, setPage] = useState(1); //current page
 
   const { data, error, isLoading, mutate } = useSWR(`/post?${page}`, () =>
@@ -26,22 +26,21 @@ function Post() {
   }
   return (
     <div className="flex flex-col items-center w-[900px]">
-      <div className="flex h-10 items-center mb-2">
-        <input
+      <div className="flex h-10 gap-x-2 items-center mb-2">
+        <select
+          name=""
+          className="border border-indigo-600 rounded p-1"
           value={limit}
-          onChange={(e) => setLimit(e.target.value)}
-          id="limit"
-          type="number"
-          placeholder="Post limit"
-          className="border-2 px-2 h-8 border-gray-400 focus:border-gray-600 outline-none rounded"
-        />
-        <button
-          onClick={handleClick}
-          className="flex items-center disabled:bg-indigo-300 bg-indigo-600 hover:bg-indigo-800 h-8 rounded text-white p-4  ml-4"
-          disabled={!limit && limit < 1}
+          onChange={async (e) => {
+            await setLimit(e.target.value);
+            await handleClick();
+          }}
         >
-          limit
-        </button>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+        </select>
       </div>
       <div className="mt-3">
         {data?.postList?.map((user) => (
