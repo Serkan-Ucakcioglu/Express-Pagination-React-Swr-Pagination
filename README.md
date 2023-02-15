@@ -1,4 +1,4 @@
-# Express-Pagination-React-Swr-Pagi
+# Express-Pagination-React-Swr-Pagination
 ### Mern Stack
 
 You must connect to your own mongodb to use. <br>
