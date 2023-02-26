@@ -5,13 +5,22 @@ import PostList from "./PostList";
 import PagiButton from "./PagiButton";
 import Loader from "../assets/Loader";
 
+export interface DataList {
+  userId: Number;
+  id: Number;
+  title: String;
+  page: number;
+}
+
 function Post() {
   const [limit, setLimit] = useState<number>(10); // post limit
   const [page, setPage] = useState<number>(1); //current page
 
-  const { data, error, isLoading, mutate } = useSWR(`/post?${page}`, () =>
-    getPost(limit, page)
+  const { data, error, isLoading, mutate } = useSWR<DataList>(
+    `/post?${page}`,
+    () => getPost(limit, page)
   );
+  console.log(data, "data");
 
   // restore operation
   const handleClick = () => {
@@ -53,7 +62,7 @@ function Post() {
           <input
             value={page}
             id="page"
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>, value: any) => {
               if (e.target.value <= data.totalPages) {
                 setPage(e.target.value);
               }
