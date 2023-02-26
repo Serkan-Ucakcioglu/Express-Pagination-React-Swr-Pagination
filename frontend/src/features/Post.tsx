@@ -1,3 +1,4 @@
+import React, { ChangeEvent, MouseEvent } from "react";
 import useSWR from "swr";
 import { getPost } from "../api/api";
 import { useState } from "react";
@@ -5,11 +6,15 @@ import PostList from "./PostList";
 import PagiButton from "./PagiButton";
 import Loader from "../assets/Loader";
 
-export interface DataList {
+export interface Post {
   userId: Number;
   id: Number;
   title: String;
+}
+export interface DataList {
+  postList: Post[];
   page: number;
+  totalPages?: number;
 }
 
 function Post() {
@@ -17,14 +22,13 @@ function Post() {
   const [page, setPage] = useState<number>(1); //current page
 
   const { data, error, isLoading, mutate } = useSWR<DataList>(
-    `/post?${page}`,
+    `/post?${Number(page)}`,
     () => getPost(limit, page)
   );
-  console.log(data, "data");
 
   // restore operation
   const handleClick = () => {
-    mutate(`/post?${page}`); //is requesting again
+    mutate(`/post?${page}`);
   };
 
   if (isLoading) {
@@ -44,8 +48,8 @@ function Post() {
             className="border border-indigo-600 rounded"
             value={limit}
             id="limit"
-            onChange={async (e) => {
-              await setLimit(e.target.value);
+            onChange={async (event: ChangeEvent<HTMLSelectElement>) => {
+              await setLimit(Number(event.target.value));
               await handleClick();
             }}
           >
@@ -62,12 +66,12 @@ function Post() {
           <input
             value={page}
             id="page"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>, value: any) => {
-              if (e.target.value <= data.totalPages) {
-                setPage(e.target.value);
+            type="number"
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
+              if (Number(event.target.value) <= data?.totalPages) {
+                setPage(Number(event.target.value));
               }
             }}
-            type="number"
             placeholder="Go to Page"
             className="border-2 px-2 h-8 border-gray-400 focus:border-gray-600 outline-none rounded"
           />
