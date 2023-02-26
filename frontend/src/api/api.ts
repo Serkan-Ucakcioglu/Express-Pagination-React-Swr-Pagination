@@ -6,7 +6,7 @@ export const api = axios.create({
 });
 
 //get post
-export const getPost = async (limit, page) => {
+export const getPost = async (limit: number, page: number) => {
   const { data } = await api.get(
     `/post?limit=${limit || 10}&page=${page || 1}`
   );
