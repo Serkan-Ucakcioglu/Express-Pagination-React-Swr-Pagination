@@ -26,8 +26,6 @@ function Post() {
     () => getPost(limit, page)
   );
 
-  console.log(data?.totalPages);
-
   // restore operation
   const handleClick = () => {
     mutate(`/post?${page}`);
