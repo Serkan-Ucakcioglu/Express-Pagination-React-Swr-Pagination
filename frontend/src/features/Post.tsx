@@ -14,7 +14,7 @@ export interface Post {
 export interface DataList {
   postList: Post[];
   page: number;
-  totalPages?: number;
+  totalPages: number;
 }
 
 function Post() {
@@ -25,6 +25,8 @@ function Post() {
     `/post?${Number(page)}`,
     () => getPost(limit, page)
   );
+
+  console.log(data?.totalPages);
 
   // restore operation
   const handleClick = () => {
@@ -79,7 +81,7 @@ function Post() {
       </div>
       <div className="mt-3">
         {data?.postList?.map((user) => (
-          <PostList post={user} key={user?.id} />
+          <PostList post={user} key={Number(user?.id)} />
         ))}
       </div>
       <PagiButton data={data} page={page} setPage={setPage} />
