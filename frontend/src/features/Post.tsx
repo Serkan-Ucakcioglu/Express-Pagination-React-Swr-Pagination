@@ -67,9 +67,9 @@ function Post() {
         </div>
       </div>
       <div className="mt-3">
-        {data?.postList?.map((user) => (
-          <PostList post={user} key={Number(user?.id)} />
-        ))}
+        {data?.postList?.map((user) => {
+          return <PostList post={user} key={Number(user?.id)} />;
+        })}
       </div>
       <PagiButton data={data} page={page} setPage={setPage} />
     </div>
