@@ -6,22 +6,11 @@ import PostList from "./PostList";
 import PagiButton from "./PagiButton";
 import Loader from "../assets/Loader";
 
-export interface Post {
-  userId: Number;
-  id: Number;
-  title: String;
-}
-export interface DataList {
-  postList: Post[];
-  page: number;
-  totalPages: number;
-}
-
 function Post() {
   const [limit, setLimit] = useState<number>(10); // post limit
   const [page, setPage] = useState<number>(1); //current page
 
-  const { data, error, isLoading, mutate } = useSWR<DataList>(
+  const { data, error, isLoading, mutate } = useSWR(
     `/post?${Number(page)}`,
     () => getPost(limit, page)
   );

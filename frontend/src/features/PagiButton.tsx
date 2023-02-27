@@ -1,7 +1,19 @@
 import React from "react";
 
+export interface Post {
+  userId: Number;
+  id: Number;
+  title: String;
+}
+export interface DataList {
+  postList: Post[];
+  page: number;
+  totalPages: number;
+  currentPage?: number;
+}
+
 type PagiProps = {
-  data: any;
+  data: DataList;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   page: number;
 };
@@ -21,7 +33,7 @@ function PagiButton({ data, setPage, page }: PagiProps) {
         prev
       </button>
       <span>
-        {data?.currentPage} of {data?.totalPages}
+        {data?.currentPage} of {Number(data?.totalPages)}
       </span>
       <button
         className="border rounded p-1 border-black disabled:text-gray-300"
