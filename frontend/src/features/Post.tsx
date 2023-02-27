@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent } from "react";
+import React, { ChangeEvent } from "react";
 import useSWR from "swr";
 import { getPost } from "../api/api";
 import { useState } from "react";
