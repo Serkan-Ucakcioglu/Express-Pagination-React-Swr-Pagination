@@ -1,5 +1,5 @@
 ### Mern Stack 
-I wrote it in React Javascript at first, then I translated it in React TypeScript. <br>
+I wrote it in React Javascript at first,then I translated it in React TypeScript. <br>
 You must connect to your own mongodb to use. <br>
 You Have To Upload The Data To Mongodb You.
 
