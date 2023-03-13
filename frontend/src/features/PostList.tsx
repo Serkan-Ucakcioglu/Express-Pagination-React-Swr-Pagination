@@ -6,7 +6,7 @@ interface IPost {
 }
 function PostList({ post }: IPost) {
   return (
-    <div className="h-12 mt-2 border-2 rounded border-indigo-600 px-3 text-left flex items-center">
+    <div className="h-12 mt-2 border-2 rounded border-indigo-700 px-3 text-left flex items-center">
       {post?.id}. {post?.title}
     </div>
   );
